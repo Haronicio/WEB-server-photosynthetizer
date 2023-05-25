@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "requirejs": "^2.3.6",
+    "self-reload-json": "^0.4.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "test",
+  "description": "## CORS",
+  "version": "1.0.0",
+  "main": "func.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}

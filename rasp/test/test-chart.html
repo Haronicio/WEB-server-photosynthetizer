@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="func.js"></script>
+    <script type="text/javascript">
+        fetchJSON_whenUpdate('bd.json', 250,updatedData => {
+            bd = formatToChart(updatedData);
+            console.log(bd);
+          });
+        setInterval(drawChart,500);
+        google.load("visualization", "1", { packages: ["corechart"] });
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            //console.log(bd);
+            var data = google.visualization.arrayToDataTable(bd);
+            var options = {
+                title: 'lumiere',
+                hAxis: { title: 'heure', titleTextStyle: { color: '#333' } },
+                vAxis: { minValue: 0, maxValue: 100 }
+            };
+            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        };
+
+    </script>
+</head>
+
+<body>
+    <div id="chart_div" style="width: 600; height: 300px;"></div>
+</body>
+
+</html>

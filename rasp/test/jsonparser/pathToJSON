@@ -1,0 +1,12 @@
+{
+	"abscisse":	{
+		"titre":	"zozo"
+	},
+	"ordonnee":	{
+		"titre":	"niveau"
+	},
+	"coordonnees":	[{
+			"x":	"99",
+			"y":	45
+		}]
+}

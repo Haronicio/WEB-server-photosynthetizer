@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas Dynamique</title>
+  <script>
+    window.onload = function() {
+        // Obtenez le contexte 2D du canvas
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+      
+        // Définissez les valeurs de départ des lignes
+        var hauteur = 50
+
+        var vmax = 75;
+        var vmin = 25;
+
+      
+        // Fonction pour dessiner les lignes
+        function dessinerLignes() {
+          // Effacer le contenu précédent du canvas
+          context.clearRect(0, 0, canvas.width, canvas.height);
+      
+          // Dessiner la première ligne
+          context.beginPath();
+          context.moveTo(0,hauteur);
+          context.lineTo(0 + vmin, hauteur);
+          context.lineTo(vmin, 0);
+          context.lineTo(vmax, 0);
+          context.lineTo(vmax, hauteur);
+          context.lineTo(100, hauteur);
+          context.strokeStyle = 'black';
+          context.lineWidth = 2;
+          context.stroke();
+        }
+      
+        // Fonction pour mettre à jour les valeurs des lignes en fonction d'une valeur donnée
+        function mettreAJourLignes(valeur) {
+          ligne1 = valeur * 2;
+          ligne2 = valeur * 3;
+          ligne3 = valeur * 4;
+      
+          dessinerLignes();
+        }
+      
+        // Appel initial pour dessiner les lignes avec les valeurs de départ
+        dessinerLignes();
+      
+        // Exemple de mise à jour des lignes avec une valeur aléatoire toutes les secondes
+        setInterval(function() {
+          var valeurAleatoire = Math.floor(Math.random() * 50) + 1;
+          mettreAJourLignes(valeurAleatoire);
+        }, 1000);
+      }
+  </script>
+  <style>
+    #canvas {
+      border: 0px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>

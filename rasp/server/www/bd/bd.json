@@ -1,0 +1,9 @@
+{
+	"abscisse":	{
+		"titre":	"temps"
+	},
+	"ordonnee":	{
+		"titre":	"niveau"
+	},
+	"coordonnees":	[]
+}

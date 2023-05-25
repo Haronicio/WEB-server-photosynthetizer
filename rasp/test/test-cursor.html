@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+  
+  <script src="func.js">/*l'ensemble des fonctions tierce*/</script>
+
+  <script type="text/javascript">
+    var params = getURIelements();
+    console.log(params);
+
+    $(function () {
+      $("#range").slider({
+        range: true,
+        min: 0,
+        max: 100,
+        values: [(params["valeur_min"]) ? params["valeur_min"]:25, (params["valeur_max"]) ? params["valeur_max"]:75],
+        // Ajouter une fonction de rappel qui met à jour les valeurs cachées dans le formulaire
+        slide: function (event, ui) {
+          $("#valeur_min").val(ui.values[0]);
+          $("#valeur_max").val(ui.values[1]);
+          $("#valeur-curseur").val(params["valeur-curseur"]);
+          $( "#myForm" ).submit(); // Envoyer le formulaire à chaque changement de valeur
+        }
+      });
+    });
+    $(function () {
+      $("#slider-vertical").slider({
+        orientation: "vertical",
+        min: 0,
+        max: 100,
+        value: (params["valeur-curseur"]) ? params["valeur-curseur"]:50,
+        slide: function (event, ui) {
+          $("#valeur_min").val(params["valeur_min"]);
+          $("#valeur_max").val(params["valeur_max"]);
+          $("#valeur-curseur").val(ui.value);
+          $("#myForm").submit(); // Envoyer le formulaire à chaque changement de valeur
+        }
+      });
+    });
+    
+  </script>
+</head>
+
+<body>
+  <div id="selector">
+    <label for="range">Sélectionnez une plage de valeurs :</label>
+    <div id="range"></div>
+    <label for="slider-vertical">Sélectionnez une valeur :</label>
+    <div id="slider-vertical"></div>
+  </div>
+    <label for="chart">Valeur :</label>
+  
+  <div id="chart" style="width: 600; height: 300px;"></div>
+
+  <form id="myForm" method="get" action="test-cursor.html" style="display:none;">
+    <input type="hidden" name="valeur_min" id="valeur_min" value="">
+    <input type="hidden" name="valeur_max" id="valeur_max" value="">
+    <input type="hidden" id="valeur-curseur" name="valeur-curseur" value="">
+  </form>
+</body>
+
+</html>
